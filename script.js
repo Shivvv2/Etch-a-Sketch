@@ -8,9 +8,19 @@ function createGrid(num) {
         for (let j = 0; j < num; j++) {
             const column = document.createElement("div");
             column.classList.add("column");
+            column.interactions = 0;
+            const r = Math.floor(Math.random()* 256);
+            const g = Math.floor(Math.random()*256);
+            const b = Math.floor(Math.random()*256);
 
             column.addEventListener("mouseenter", () => {
-                column.style.backgroundColor = "black";
+                column.interactions++;
+                const darkness = column.interactions/10;
+                const brightness = 1 - darkness;
+
+                column.style.backgroundColor = `rgb(${r*brightness},${g*brightness},${b*brightness})`;
+                
+                
             });
 
             row.appendChild(column);
